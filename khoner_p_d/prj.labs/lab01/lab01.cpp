@@ -42,7 +42,7 @@ int main() {
 	////time
 	stop = std::chrono::high_resolution_clock::now();
 	duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
-	std::cout << "G2 = " << duration.count() << " m"
+	std::cout << "G2 = " << duration.count() << " ms"
 		<< "\n";
 	
 	cv::rectangle(img, rc, { 150 }, 1);
