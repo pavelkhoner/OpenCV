@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.8)
+project( lab04)
+find_package( OpenCV REQUIRED )
+include_directories( ${OpenCV_INCLUDE_DIRS} )
+add_executable( lab04 lab04.cpp lab04.report.md.in.txt)
+file(READ lab04.cpp cpp_source)
+configure_file(lab04.report.md.in.txt ${CMAKE_CURRENT_BINARY_DIR}/lab04.report.md @ONLY)
+target_link_libraries( lab04 ${OpenCV_LIBS} )
