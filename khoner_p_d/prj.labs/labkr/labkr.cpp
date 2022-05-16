@@ -42,18 +42,26 @@ int main() {
 
 	cv::imwrite("kr.png", img);
 	///2.filtr I1
-	cv::Mat I;
-	float kerI[4]{ 1,0,0,-1 };
-	cv::Mat kerI_matrix(2, 2, CV_32FC1, kerI);
-	cv::filter2D(img, I, -1, kerI_matrix);
-	cv::imwrite("kr1.png", I);
+	cv::Mat I1;
+	float kerI1[4]{ 1,0,0,-1 };
+	cv::Mat kerI1_matrix(2, 2, CV_32FC1, kerI1);
+	cv::filter2D(img, I1, -1, kerI1_matrix);
+	cv::imwrite("kr1.png", I1);
 
 	///3.filtrI2
-	cv::Mat II;
-	float kerII[4]{ 0,1,-1,0 };
-	cv::Mat kerII_matrix(2, 2, CV_32FC1, kerII);
-	cv::filter2D(img, II, -1, kerII_matrix);
-	cv::imwrite("kr2.png", II);
+	cv::Mat I2;
+	float kerI2[4]{ 0,1,-1,0 };
+	cv::Mat kerI2_matrix(2, 2, CV_32FC1, kerI2);
+	cv::filter2D(img, I2, -1, kerI2_matrix);
+	cv::imwrite("kr2.png", I2);
 	///4.
-
+	cv::Mat getsr(img);
+	for (int i = 0; i < img.cols; i++) {
+		for (int j = 0; j < img.rows; j++) {
+			getsr.at<char>(j, i) = sqrt(I1.at<char>(j, i) * I2.at<uchar>(j, i));
+		}
+	}
+cv::imwrite("kr3.png", getsr);
+cv:imwrite("kr4.png", img);
+return 0;
 }
